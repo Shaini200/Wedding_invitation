@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-sage: #A8B5A2;
+    --color-sage-dark: #3E4A3A;
+    --color-blush: #F8E8E8;
+    --color-ivory: #FAF7F2;
+    --color-gold: #D4B483;
+    --color-gold-light: #F4E8D4;
+    --color-dark: #2C3629;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-ivory);
+    color: var(--color-dark);
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  }
+
+  /* Sinhala text enhancement */
+  [lang="si"], .font-si {
+    font-family: 'Abhaya Libre', 'Cormorant Garamond', serif;
+  }
+}
+
+/* Custom Utilities */
+.glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 180, 131, 0.25);
+  box-shadow: 0 12px 32px 0 rgba(44, 54, 41, 0.05);
+}
+
+.glass-card-dark {
+  background: rgba(44, 54, 41, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 180, 131, 0.3);
+  box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15);
+}
+
+.glass-gold {
+  background: linear-gradient(135deg, rgba(254, 250, 245, 0.8), rgba(248, 232, 232, 0.6));
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 180, 131, 0.4);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #B89355 0%, #D4B483 50%, #9E7B42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #D4B483 0%, #C49F6A 100%);
+}
+
+.sage-gradient-bg {
+  background: linear-gradient(135deg, #A8B5A2 0%, #8E9C88 100%);
+}
+
+.shimmer-gold {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-gold::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 70%
+  );
+  transform: rotate(30deg);
+  animation: shimmer 4s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(30deg); }
+  100% { transform: translateX(100%) rotate(30deg); }
+}
+
+@keyframes floatPetal {
+  0% {
+    transform: translateY(-5vh) rotate(0deg) translateX(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg) translateX(50px);
+    opacity: 0;
+  }
+}
+
+/* Perspective for 3D flip card */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4B483;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B89355;
+}
