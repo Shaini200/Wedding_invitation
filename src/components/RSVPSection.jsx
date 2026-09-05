@@ -43,19 +43,19 @@ export default function RSVPSection({ currentLang, onAddWish }) {
       attending:   formData.attending === 'yes' ? '✅ Attending' : '❌ Not Attending',
       message:     formData.wish || 'No message',
       timestamp:   timestamp,
-      to_email:    'shainikavindya35@gmail.com',
-      bcc_email:   'tharusha14ishadi@gmail.com',
     };
 
     try {
-      await emailjs.send(
+      const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams,
-        EMAILJS_PUBLIC_KEY
+        { publicKey: EMAILJS_PUBLIC_KEY }
       );
+      console.log('✅ Email sent successfully:', response.status, response.text);
     } catch (err) {
-      console.error('EmailJS error:', err);
+      console.error('❌ EmailJS error:', err);
+      console.error('Error details:', JSON.stringify(err));
     }
 
     setIsSubmitting(false);
@@ -73,6 +73,7 @@ export default function RSVPSection({ currentLang, onAddWish }) {
       onAddWish({ name: formData.name, message: formData.wish });
     }
   };
+
 
 
   const handleReset = () => {
