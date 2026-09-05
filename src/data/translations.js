@@ -137,7 +137,7 @@ export const translations = {
     // Hero Section
     heroGreeting: "දෙමාපියන්ගේ ආශිර්වාදයෙන් යුතුව",
     brideName: "තරුෂා",
-    groomName: "රජිත",
+    groomName: "රාජිත",
     andSign: "සහ",
     heroSubtitle: "අපගේ විවාහ මංගලෝත්සවය සඳහා ඔබට ගෞරවයෙන් ඇරයුම් කර සිටිමු",
     weddingDateText: "2026 දෙසැම්බර් මස 03 වන බ්‍රහස්පතින්දා",
@@ -168,7 +168,7 @@ export const translations = {
     venueTimeLabel: "වේලාව",
     venueTimeVal: "පෙ.ව. 09:30 සිට",
     venueContactLabel: "විමසීම් සහ සහාය",
-    venueContactVal: "රජිත: 070 409 7694 / තරුෂා: 077 116 5652",
+    venueContactVal: "රාජිත: 070 409 7694 / තරුෂා: 077 116 5652",
     venueGoogleMapsBtn: "Google Maps හි නරඹන්න",
     venueGetDirections: "මාර්ග උපදෙස් ලබාගන්න",
 
@@ -208,7 +208,7 @@ export const translations = {
     rsvpYes: "ප්‍රීතියෙන් සහභාගී වෙමි",
     rsvpNo: "කණගාටුවෙන් පැමිණිය නොහැක",
     rsvpWishLabel: "විශේෂ සටහනක් හෝ සුභපැතුමක්",
-    rsvpWishPlaceholder: "රජිත සහ තරුෂා වෙත සුභපැතුමක් හෝ ආහාර පිලිබඳ විශේෂ අවශ්‍යතාවයක් සටහන් කරන්න...",
+    rsvpWishPlaceholder: "රාජිත සහ තරුෂා වෙත සුභපැතුමක් හෝ ආහාර පිලිබඳ විශේෂ අවශ්‍යතාවයක් සටහන් කරන්න...",
     rsvpSubmitBtn: "තහවුරු කිරීම යවන්න",
     rsvpSubmitting: "යවමින් පවතී...",
     rsvpSuccessTitle: "ස්තූතියි!",
@@ -220,7 +220,7 @@ export const translations = {
     wishesSubtitle: "අප වෙත ලැබුණු ආදරණීය සුභපැතුම් සහ ආශිර්වාද",
     wishesAddTitle: "ඔබගේ සුභපැතුම එක්කරන්න",
     wishesNamePlaceholder: "ඔබගේ නම",
-    wishesMessagePlaceholder: "රජිත සහ තරුෂා වෙත ඔබගේ ආශිර්වාදය සටහන් කරන්න...",
+    wishesMessagePlaceholder: "රාජිත සහ තරුෂා වෙත ඔබගේ ආශිර්වාදය සටහන් කරන්න...",
     wishesPostBtn: "සුභපැතුම පලකරන්න",
     wishesEmptyMsg: "අපගේ පුවරුවේ ප්‍රථම සුභපැතුම පළකරන්නා වන්න!",
 
@@ -231,7 +231,7 @@ export const translations = {
 
     // Footer
     footerThankYou: "අප සමග සහභාගී වීම පිළිබඳව ස්තූතියි",
-    footerSubtext: "රජිත සහ තරුෂාගේ 2026 මංගල්‍යය වෙනුවෙන් ආදරයෙන් නිර්මාණය කරන ලදී.",
+    footerSubtext: "රාජිත සහ තරුෂාගේ 2026 මංගල්‍යය වෙනුවෙන් ආදරයෙන් නිර්මාණය කරන ලදී.",
     footerBackToTop: "ඉහළට යන්න"
   }
 };
