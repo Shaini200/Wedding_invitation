@@ -143,7 +143,7 @@ export const translations = {
     weddingDateText: "2026 දෙසැම්බර් මස 03 වන බ්‍රහස්පතින්දා",
     countdownDays: "දින",
     countdownHours: "පැය",
-    countdownMinutes: "මිနစ်",
+    countdownMinutes: "මිනිත්තු",
     countdownSeconds: "තත්පර",
     countdownHeading: "අපගේ මංගල දිනයට තව",
 
