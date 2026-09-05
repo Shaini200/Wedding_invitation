@@ -43,7 +43,8 @@ export default function RSVPSection({ currentLang, onAddWish }) {
       attending:   formData.attending === 'yes' ? '✅ Attending' : '❌ Not Attending',
       message:     formData.wish || 'No message',
       timestamp:   timestamp,
-      to_email:    'tharusha14ishadi@gmail.com',
+      to_email:    'shainikavindya35@gmail.com',
+      bcc_email:   'tharusha14ishadi@gmail.com',
     };
 
     try {
