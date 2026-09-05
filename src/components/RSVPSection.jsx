@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Sparkles, Send, CheckCircle2, User, Phone, Mail, Users, MessageSquare, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import emailjs from '@emailjs/browser';
 import { translations } from '../data/translations';
+
+// ✅ EmailJS Configuration
+const EMAILJS_SERVICE_ID  = 'service_01mg02w';
+const EMAILJS_TEMPLATE_ID = 'template_5fl81ra';
+const EMAILJS_PUBLIC_KEY  = 'WPhKpwBCT5CYsPP4Z';
 
 export default function RSVPSection({ currentLang, onAddWish }) {
   const t = translations[currentLang] || translations.en;
@@ -19,34 +25,54 @@ export default function RSVPSection({ currentLang, onAddWish }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+    const now = new Date();
+    const timestamp = now.toLocaleString('en-GB', {
+      day: '2-digit', month: 'long', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
 
-      // Trigger Confetti Explosion
-      try {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
-      } catch (err) {
-        console.error("Confetti error:", err);
-      }
+    const templateParams = {
+      guest_name:  formData.name,
+      guest_phone: formData.phone,
+      guest_email: formData.email || 'Not provided',
+      guest_count: formData.guests,
+      attending:   formData.attending === 'yes' ? '✅ Attending' : '❌ Not Attending',
+      message:     formData.wish || 'No message',
+      timestamp:   timestamp,
+      to_email:    'tharusha14ishadi@gmail.com',
+    };
 
-      // Add wish to wishes wall if provided
-      if (formData.wish.trim() && onAddWish) {
-        onAddWish({
-          name: formData.name,
-          message: formData.wish
-        });
-      }
-    }, 1000);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+    } catch (err) {
+      console.error('EmailJS error:', err);
+    }
+
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+
+    // Confetti
+    try {
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    } catch (err) {
+      console.error('Confetti error:', err);
+    }
+
+    // Add wish to wishes wall
+    if (formData.wish.trim() && onAddWish) {
+      onAddWish({ name: formData.name, message: formData.wish });
+    }
   };
+
 
   const handleReset = () => {
     setIsSubmitted(false);
