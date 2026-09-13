@@ -6,9 +6,13 @@ import emailjs from '@emailjs/browser';
 import { translations } from '../data/translations';
 
 // ✅ EmailJS Configuration
-const EMAILJS_SERVICE_ID  = 'service_01mg02w';
+const EMAILJS_SERVICE_ID  = 'service_3i9g20n';
 const EMAILJS_TEMPLATE_ID = 'template_5fl81ra';
 const EMAILJS_PUBLIC_KEY  = 'WPhKpwBCT5CYsPP4Z';
+
+// ✅ Google Sheets Web App URL
+// After deploying the Apps Script, paste your Web App URL here:
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbw8hM6SxtUf6QyQ-Pg7F1KVqiX4H95hjO90U8xG3G5ejoV0LOwgWwmdSRJ762PmmPiz/exec';
 
 export default function RSVPSection({ currentLang, onAddWish }) {
   const t = translations[currentLang] || translations.en;
@@ -45,18 +49,43 @@ export default function RSVPSection({ currentLang, onAddWish }) {
       timestamp:   timestamp,
     };
 
-    try {
-      const response = await emailjs.send(
+    // ✅ Send to Google Sheets
+    const sendToGoogleSheets = async () => {
+      if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+        console.warn('⚠️ Google Sheets URL not configured yet.');
+        return;
+      }
+      try {
+        const sheetsPayload = {
+          name:      formData.name,
+          phone:     formData.phone,
+          email:     formData.email || '',
+          attending: formData.attending === 'yes' ? '✅ Attending' : '❌ Not Attending',
+          guests:    formData.guests,
+          wish:      formData.wish || '',
+        };
+        await fetch(GOOGLE_SHEETS_URL, {
+          method:  'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body:    JSON.stringify(sheetsPayload),
+        });
+        console.log('✅ Google Sheets updated');
+      } catch (err) {
+        console.error('❌ Google Sheets error:', err);
+      }
+    };
+
+    // Send EmailJS + Google Sheets in parallel
+    await Promise.allSettled([
+      emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams,
         { publicKey: EMAILJS_PUBLIC_KEY }
-      );
-      console.log('✅ Email sent successfully:', response.status, response.text);
-    } catch (err) {
-      console.error('❌ EmailJS error:', err);
-      console.error('Error details:', JSON.stringify(err));
-    }
+      ).then((res) => console.log('✅ Email sent:', res.status, res.text))
+       .catch((err) => console.error('❌ EmailJS error:', err)),
+      sendToGoogleSheets(),
+    ]);
 
     setIsSubmitting(false);
     setIsSubmitted(true);
