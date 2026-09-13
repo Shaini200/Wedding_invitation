@@ -21,13 +21,13 @@ export const translations = {
     brideName: "Tharusha",
     groomName: "Rajitha",
     andSign: "&",
-    heroSubtitle: "Are Requesting The Honor Of Your Presence At Their Marriage",
+    heroSubtitle: "Request the honour of your presence at our wedding",
     weddingDateText: "Thursday, December 03, 2026",
     countdownDays: "Days",
     countdownHours: "Hours",
     countdownMinutes: "Minutes",
     countdownSeconds: "Seconds",
-    countdownHeading: "Counting Down To Our Forever",
+    countdownHeading: "Counting Down Until Our Forever",
 
     // Animated Invitation Card
     invitationTitle: "The Wedding Invitation",
